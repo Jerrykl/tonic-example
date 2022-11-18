@@ -15,7 +15,7 @@ impl Echo for MyEcho {
         request: tonic::Request<EchoRequest>,
     ) -> Result<tonic::Response<EchoReply>, tonic::Status> {
         Ok(tonic::Response::new(EchoReply {
-            message: format!("Echoing back: {}", request.get_ref().message),
+            message: vec![1; request.get_ref().message.parse::<usize>().unwrap()],
         }))
     }
 }
